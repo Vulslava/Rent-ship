@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -22,6 +24,7 @@ namespace Rent_ship
         public Sotrud()
         {
             InitializeComponent();
+            DataContext = new ViewModel.ContSotr(this);
         }
     }
 }

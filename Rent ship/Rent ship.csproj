@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -14,6 +15,8 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,8 +38,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,7 +68,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Addship.xaml.cs">
+    <Compile Include="Model\Client.cs" />
+    <Compile Include="Model\Dogovor.cs" />
+    <Compile Include="Model\Rent_Model.cs" />
+    <Compile Include="Model\Ship.cs" />
+    <Compile Include="Model\Sotrudnik.cs" />
+    <Compile Include="Model\Tip_ship.cs" />
+    <Compile Include="ViewModel\Bases.cs" />
+    <Compile Include="ViewModel\ContAdd.cs" />
+    <Compile Include="ViewModel\ContSotr.cs" />
+    <Compile Include="ViewModel\IObservable.cs" />
+    <Compile Include="ViewModel\IObserver.cs" />
+    <Compile Include="ViewModel\IRequireViewIdentification.cs" />
+    <Compile Include="ViewModel\ShipVM.cs" />
+    <Compile Include="View\Addship.xaml.cs">
       <DependentUpon>Addship.xaml</DependentUpon>
     </Compile>
     <Compile Include="Addsotr.xaml.cs">
@@ -67,16 +93,24 @@
     <Compile Include="Changeship.xaml.cs">
       <DependentUpon>Changeship.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dogovor.xaml.cs">
+    <Compile Include="ViewModel\Control.cs" />
+    <Compile Include="View\Dogovor.xaml.cs">
       <DependentUpon>Dogovor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Otchet.xaml.cs">
+    <Compile Include="NewFolder1\ClientModel.cs" />
+    <Compile Include="NewFolder1\DogovorModel.cs" />
+    <Compile Include="NewFolder1\ShipModel.cs" />
+    <Compile Include="NewFolder1\SotrudnikModel.cs" />
+    <Compile Include="NewFolder1\Tip_shipModel.cs" />
+    <Compile Include="NewFolder1\Tip_sotrudnikaModel.cs" />
+    <Compile Include="View\Otchet.xaml.cs">
       <DependentUpon>Otchet.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sotrud.xaml.cs">
+    <Compile Include="ViewModel\RelayCommand.cs" />
+    <Compile Include="View\Sotrud.xaml.cs">
       <DependentUpon>Sotrud.xaml</DependentUpon>
     </Compile>
-    <Page Include="Addship.xaml">
+    <Page Include="View\Addship.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -92,11 +126,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dogovor.xaml">
+    <Page Include="View\Dogovor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -104,15 +138,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Otchet.xaml">
+    <Page Include="View\Otchet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sotrud.xaml">
+    <Page Include="View\Sotrud.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -135,6 +169,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -143,5 +179,28 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Ship2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Ship1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Ship3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Ship4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Ship5.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
 </Project>

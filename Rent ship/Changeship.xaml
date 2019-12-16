@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rent_ship"
         mc:Ignorable="d"
-        Title="Rent ship" Height="365" Width="470" MinHeight="365" MinWidth="470" MaxHeight="10000" MaxWidth="10000">
+        Title="Rent ship" Height="400" Width="500" MinHeight="400" MinWidth="500" MaxHeight="400" MaxWidth="500">
     <Grid>
         <Label Content="Название" HorizontalAlignment="Center" Margin="10,10,389,298" VerticalAlignment="Center"/>
         <TextBox HorizontalAlignment="Center" Height="24" Margin="10,41,310,269" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="142"/>
@@ -33,7 +33,7 @@
         <TextBox HorizontalAlignment="Center" Height="23" Margin="304,219,16,92" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="142"/>
         <Label Content="Тип" HorizontalAlignment="Center" Margin="10,247,422,61" VerticalAlignment="Center"/>
         <ComboBox HorizontalAlignment="Center" Margin="10,278,332,34" VerticalAlignment="Center" Width="120"/>
-        <Button Content="ОК" HorizontalAlignment="Center" Margin="10,305,377,9" VerticalAlignment="Center" Width="75"/>
+        <Button Content="ОК" HorizontalAlignment="Center" Margin="10,305,377,9" VerticalAlignment="Center" Width="75" Command="{Binding ChangeShip}"/>
 
     </Grid>
 </Window>

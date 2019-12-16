@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ArendaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Adres" Type="varchar" MaxLength="50" />
+          <Property Name="Tel" Type="int" />
+          <Property Name="Serp" Type="int" Nullable="false" />
+          <Property Name="Nump" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dogovor">
+          <Key>
+            <PropertyRef Name="DID" />
+          </Key>
+          <Property Name="DID" Type="int" Nullable="false" />
+          <Property Name="Date_of" Type="datetime" Nullable="false" />
+          <Property Name="Date_sd" Type="datetime" Nullable="false" />
+          <Property Name="Date_ok" Type="datetime" Nullable="false" />
+          <Property Name="Sum" Type="money" Nullable="false" />
+          <Property Name="CFK" Type="int" />
+          <Property Name="SFK" Type="int" />
+          <Property Name="LFK" Type="int" />
+        </EntityType>
+        <EntityType Name="Ship">
+          <Key>
+            <PropertyRef Name="LID" />
+          </Key>
+          <Property Name="LID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Manufacture" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Power_dv" Type="int" Nullable="false" />
+          <Property Name="Dlina" Type="real" Nullable="false" />
+          <Property Name="Shirina" Type="real" Nullable="false" />
+          <Property Name="Osadka" Type="real" Nullable="false" />
+          <Property Name="Visota_bort" Type="real" Nullable="false" />
+          <Property Name="Speed_max" Type="int" Nullable="false" />
+          <Property Name="Vodoizmesch" Type="real" Nullable="false" />
+          <Property Name="Rashod_topl" Type="real" Nullable="false" />
+          <Property Name="Sostoyanie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sum_day" Type="money" Nullable="false" />
+          <Property Name="LTFK" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sotrudnik">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="int" Nullable="false" />
+          <Property Name="FIO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Num" Type="int" Nullable="false" />
+          <Property Name="Pass" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TFK" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tip_ship">
+          <Key>
+            <PropertyRef Name="LTID" />
+          </Key>
+          <Property Name="LTID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tip_sotrudnika">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Dogovor_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="Dogovor">
+              <PropertyRef Name="CFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dogovor_Ship">
+          <End Role="Ship" Type="Self.Ship" Multiplicity="0..1" />
+          <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ship">
+              <PropertyRef Name="LID" />
+            </Principal>
+            <Dependent Role="Dogovor">
+              <PropertyRef Name="LFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dogovor_Sotrudnik">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="Dogovor">
+              <PropertyRef Name="SFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ship_Tip_ship">
+          <End Role="Tip_ship" Type="Self.Tip_ship" Multiplicity="1" />
+          <End Role="Ship" Type="Self.Ship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tip_ship">
+              <PropertyRef Name="LTID" />
+            </Principal>
+            <Dependent Role="Ship">
+              <PropertyRef Name="LTFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrudnik_Tip_sotrudnika">
+          <End Role="Tip_sotrudnika" Type="Self.Tip_sotrudnika" Multiplicity="1" />
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tip_sotrudnika">
+              <PropertyRef Name="TID" />
+            </Principal>
+            <Dependent Role="Sotrudnik">
+              <PropertyRef Name="TFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ArendaModelContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dogovor" EntityType="Self.Dogovor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ship" EntityType="Self.Ship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tip_ship" EntityType="Self.Tip_ship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tip_sotrudnika" EntityType="Self.Tip_sotrudnika" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Dogovor_Client" Association="Self.FK_Dogovor_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Dogovor" EntitySet="Dogovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dogovor_Ship" Association="Self.FK_Dogovor_Ship">
+            <End Role="Ship" EntitySet="Ship" />
+            <End Role="Dogovor" EntitySet="Dogovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dogovor_Sotrudnik" Association="Self.FK_Dogovor_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Dogovor" EntitySet="Dogovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ship_Tip_ship" Association="Self.FK_Ship_Tip_ship">
+            <End Role="Tip_ship" EntitySet="Tip_ship" />
+            <End Role="Ship" EntitySet="Ship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrudnik_Tip_sotrudnika" Association="Self.FK_Sotrudnik_Tip_sotrudnika">
+            <End Role="Tip_sotrudnika" EntitySet="Tip_sotrudnika" />
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ArendaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tel" Type="Int32" />
+          <Property Name="Serp" Type="Int32" Nullable="false" />
+          <Property Name="Nump" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dogovor" Relationship="Self.FK_Dogovor_Client" FromRole="Client" ToRole="Dogovor" />
+        </EntityType>
+        <EntityType Name="Dogovor">
+          <Key>
+            <PropertyRef Name="DID" />
+          </Key>
+          <Property Name="DID" Type="Int32" Nullable="false" />
+          <Property Name="Date_of" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Date_sd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Date_ok" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sum" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CFK" Type="Int32" />
+          <Property Name="SFK" Type="Int32" />
+          <Property Name="LFK" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Dogovor_Client" FromRole="Dogovor" ToRole="Client" />
+          <NavigationProperty Name="Ship" Relationship="Self.FK_Dogovor_Ship" FromRole="Dogovor" ToRole="Ship" />
+          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK_Dogovor_Sotrudnik" FromRole="Dogovor" ToRole="Sotrudnik" />
+        </EntityType>
+        <EntityType Name="Ship">
+          <Key>
+            <PropertyRef Name="LID" />
+          </Key>
+          <Property Name="LID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Manufacture" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Power_dv" Type="Int32" Nullable="false" />
+          <Property Name="Dlina" Type="Single" Nullable="false" />
+          <Property Name="Shirina" Type="Single" Nullable="false" />
+          <Property Name="Osadka" Type="Single" Nullable="false" />
+          <Property Name="Visota_bort" Type="Single" Nullable="false" />
+          <Property Name="Speed_max" Type="Int32" Nullable="false" />
+          <Property Name="Vodoizmesch" Type="Single" Nullable="false" />
+          <Property Name="Rashod_topl" Type="Single" Nullable="false" />
+          <Property Name="Sostoyanie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sum_day" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="LTFK" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dogovor" Relationship="Self.FK_Dogovor_Ship" FromRole="Ship" ToRole="Dogovor" />
+          <NavigationProperty Name="Tip_ship" Relationship="Self.FK_Ship_Tip_ship" FromRole="Ship" ToRole="Tip_ship" />
+        </EntityType>
+        <EntityType Name="Sotrudnik">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int32" Nullable="false" />
+          <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Num" Type="Int32" Nullable="false" />
+          <Property Name="Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TFK" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dogovor" Relationship="Self.FK_Dogovor_Sotrudnik" FromRole="Sotrudnik" ToRole="Dogovor" />
+          <NavigationProperty Name="Tip_sotrudnika" Relationship="Self.FK_Sotrudnik_Tip_sotrudnika" FromRole="Sotrudnik" ToRole="Tip_sotrudnika" />
+        </EntityType>
+        <EntityType Name="Tip_ship">
+          <Key>
+            <PropertyRef Name="LTID" />
+          </Key>
+          <Property Name="LTID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Ship" Relationship="Self.FK_Ship_Tip_ship" FromRole="Tip_ship" ToRole="Ship" />
+        </EntityType>
+        <EntityType Name="Tip_sotrudnika">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK_Sotrudnik_Tip_sotrudnika" FromRole="Tip_sotrudnika" ToRole="Sotrudnik" />
+        </EntityType>
+        <Association Name="FK_Dogovor_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="Dogovor">
+              <PropertyRef Name="CFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dogovor_Ship">
+          <End Role="Ship" Type="Self.Ship" Multiplicity="0..1" />
+          <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ship">
+              <PropertyRef Name="LID" />
+            </Principal>
+            <Dependent Role="Dogovor">
+              <PropertyRef Name="LFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dogovor_Sotrudnik">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="Dogovor">
+              <PropertyRef Name="SFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ship_Tip_ship">
+          <End Role="Tip_ship" Type="Self.Tip_ship" Multiplicity="1" />
+          <End Role="Ship" Type="Self.Ship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tip_ship">
+              <PropertyRef Name="LTID" />
+            </Principal>
+            <Dependent Role="Ship">
+              <PropertyRef Name="LTFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrudnik_Tip_sotrudnika">
+          <End Role="Tip_sotrudnika" Type="Self.Tip_sotrudnika" Multiplicity="1" />
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tip_sotrudnika">
+              <PropertyRef Name="TID" />
+            </Principal>
+            <Dependent Role="Sotrudnik">
+              <PropertyRef Name="TFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ArendaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Dogovor" EntityType="Self.Dogovor" />
+          <EntitySet Name="Ship" EntityType="Self.Ship" />
+          <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" />
+          <EntitySet Name="Tip_ship" EntityType="Self.Tip_ship" />
+          <EntitySet Name="Tip_sotrudnika" EntityType="Self.Tip_sotrudnika" />
+          <AssociationSet Name="FK_Dogovor_Client" Association="Self.FK_Dogovor_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Dogovor" EntitySet="Dogovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dogovor_Ship" Association="Self.FK_Dogovor_Ship">
+            <End Role="Ship" EntitySet="Ship" />
+            <End Role="Dogovor" EntitySet="Dogovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dogovor_Sotrudnik" Association="Self.FK_Dogovor_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Dogovor" EntitySet="Dogovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ship_Tip_ship" Association="Self.FK_Ship_Tip_ship">
+            <End Role="Tip_ship" EntitySet="Tip_ship" />
+            <End Role="Ship" EntitySet="Ship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrudnik_Tip_sotrudnika" Association="Self.FK_Sotrudnik_Tip_sotrudnika">
+            <End Role="Tip_sotrudnika" EntitySet="Tip_sotrudnika" />
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ArendaModelContainer" CdmEntityContainer="ArendaEntities">
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="ArendaModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Serp" ColumnName="Serp" />
+                <ScalarProperty Name="Nump" ColumnName="Nump" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dogovor">
+            <EntityTypeMapping TypeName="ArendaModel.Dogovor">
+              <MappingFragment StoreEntitySet="Dogovor">
+                <ScalarProperty Name="DID" ColumnName="DID" />
+                <ScalarProperty Name="Date_of" ColumnName="Date_of" />
+                <ScalarProperty Name="Date_sd" ColumnName="Date_sd" />
+                <ScalarProperty Name="Date_ok" ColumnName="Date_ok" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+                <ScalarProperty Name="CFK" ColumnName="CFK" />
+                <ScalarProperty Name="SFK" ColumnName="SFK" />
+                <ScalarProperty Name="LFK" ColumnName="LFK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ship">
+            <EntityTypeMapping TypeName="ArendaModel.Ship">
+              <MappingFragment StoreEntitySet="Ship">
+                <ScalarProperty Name="LID" ColumnName="LID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Manufacture" ColumnName="Manufacture" />
+                <ScalarProperty Name="Power_dv" ColumnName="Power_dv" />
+                <ScalarProperty Name="Dlina" ColumnName="Dlina" />
+                <ScalarProperty Name="Shirina" ColumnName="Shirina" />
+                <ScalarProperty Name="Osadka" ColumnName="Osadka" />
+                <ScalarProperty Name="Visota_bort" ColumnName="Visota_bort" />
+                <ScalarProperty Name="Speed_max" ColumnName="Speed_max" />
+                <ScalarProperty Name="Vodoizmesch" ColumnName="Vodoizmesch" />
+                <ScalarProperty Name="Rashod_topl" ColumnName="Rashod_topl" />
+                <ScalarProperty Name="Sostoyanie" ColumnName="Sostoyanie" />
+                <ScalarProperty Name="Sum_day" ColumnName="Sum_day" />
+                <ScalarProperty Name="LTFK" ColumnName="LTFK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sotrudnik">
+            <EntityTypeMapping TypeName="ArendaModel.Sotrudnik">
+              <MappingFragment StoreEntitySet="Sotrudnik">
+                <ScalarProperty Name="SID" ColumnName="SID" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="TFK" ColumnName="TFK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tip_ship">
+            <EntityTypeMapping TypeName="ArendaModel.Tip_ship">
+              <MappingFragment StoreEntitySet="Tip_ship">
+                <ScalarProperty Name="LTID" ColumnName="LTID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tip_sotrudnika">
+            <EntityTypeMapping TypeName="ArendaModel.Tip_sotrudnika">
+              <MappingFragment StoreEntitySet="Tip_sotrudnika">
+                <ScalarProperty Name="TID" ColumnName="TID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

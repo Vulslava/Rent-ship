@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0388c51afcdb4328a2bb26c1071fbf4e" Name="Diagram1">
+        <EntityTypeShape EntityType="ArendaModel.Client" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendaModel.Dogovor" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendaModel.Ship" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendaModel.Sotrudnik" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendaModel.Tip_ship" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArendaModel.Tip_sotrudnika" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="ArendaModel.FK_Dogovor_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendaModel.FK_Dogovor_Ship" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendaModel.FK_Dogovor_Sotrudnik" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendaModel.FK_Ship_Tip_ship" ManuallyRouted="false" />
+        <AssociationConnector Association="ArendaModel.FK_Sotrudnik_Tip_sotrudnika" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

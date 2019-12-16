@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Rent_ship.Model;
 
 namespace Rent_ship
 {
@@ -22,6 +23,7 @@ namespace Rent_ship
         public Addship()
         {
             InitializeComponent();
+            DataContext = new ViewModel.ContAdd(this);
         }
     }
 }

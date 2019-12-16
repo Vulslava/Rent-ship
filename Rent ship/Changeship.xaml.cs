@@ -22,6 +22,7 @@ namespace Rent_ship
         public Changeship()
         {
             InitializeComponent();
+            DataContext = new Control();
         }
     }
 }
