@@ -11,30 +11,37 @@ using System.Windows.Controls;
 
 namespace Rent_ship.ViewModel
 {
-    public class ContAdd : Bases
+    class ContChange
     {
         Window w;
         Rent_Model a;
+        Ship s;
+        string name, manufacture, sostoyanie;
+        int power_dv, speed_max;
+        float dlina, shirina, osadka, visota_bort, vodoizmesch, rashod_topl;
+        decimal sum_day;
         public ObservableCollection<Ship> ship { get; set; }
         public ObservableCollection<Tip_ship> TS { get; set; }
-        public ContAdd(Window win, Rent_Model db)
+        public ContChange(Window win, Ship ss, Rent_Model db)
         {
             a = db;
             w = win;
+            s = ss;
             TS = new ObservableCollection<Tip_ship>(a.Tip_ship);
+            name = s.Name;
+            manufacture = s.Manufacture;
+            power_dv = s.Power_dv;
+            dlina = s.Dlina;
+            shirina = s.Shirina;
+            osadka = s.Osadka;
+            visota_bort = s.Visota_bort;
+            speed_max = s.Speed_max;
+            vodoizmesch = s.Vodoizmesch;
+            rashod_topl = s.Rashod_topl;
+            sostoyanie = s.Sostoyanie;
+            sum_day = s.Sum_day;
+            SelectedTip_ship = TS.Where(i => i.LTID == ss.LTFK).FirstOrDefault();
         }
-        private string name = null;
-        private string manufacture = null;
-        private int power_dv = 0;
-        private float dlina = 0;
-        private float shirina = 0;
-        private float osadka = 0;
-        private float visota_bort = 0;
-        private int speed_max = 0;
-        private float vodoizmesch = 0;
-        private float rashod_topl = 0;
-        private string sostoyanie = null;
-        private decimal sum_day = 0;
         public string Name
         {
             get { return name; }
@@ -113,7 +120,7 @@ namespace Rent_ship.ViewModel
             {
                 return new RelayCommand(obj =>
                 {
-                    Ship sh = new Ship();
+                    Ship sh = a.Ship.Find(s.LID);
                     sh.Name = name;
                     sh.Manufacture = manufacture;
                     sh.Power_dv = power_dv;
@@ -127,8 +134,6 @@ namespace Rent_ship.ViewModel
                     sh.Sostoyanie = sostoyanie;
                     sh.Sum_day = sum_day;
                     sh.LTFK = selectedtip_ship.LTID;
-                    sh.LID = 1;
-                    a.Ship.Add(sh);
                     a.SaveChanges();
                     w.Close();
                 });

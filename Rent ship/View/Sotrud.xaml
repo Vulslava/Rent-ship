@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rent_ship"
         mc:Ignorable="d"
-        Title="Аренда лодки" Height="300" Width="600" MinHeight="300" MinWidth="550" MaxHeight="10000" MaxWidth="10000">
+        Title="Аренда лодки" Height="483" Width="819" MinHeight="300" MinWidth="550" MaxHeight="10000" MaxWidth="10000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30px"></RowDefinition>
@@ -19,12 +19,12 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="90px"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Image Source="/Resources/Ship5.jpg" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Grid.ColumnSpan="3" Margin="-28,0,-25,-71" Opacity="0.6"/>
+        <Image Source="/Resources/Ship5.jpg" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Grid.ColumnSpan="3" Margin="-30,-24,-23,-47" Opacity="0.6"/>
         <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Grid.Column="2" Grid.Row="0" Content="Добавить" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding AddCommand}" Margin="10,5,5,5"/>
-        <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Grid.Column="2" Grid.Row="1" Content="Удалить" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding RemoveCommand}" Margin="10,5,5,5"/>
-        <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Grid.Column="2" Grid.Row="2" Content="Договор" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding DogovorCommand}" Margin="10,5,5,5"/>
-        <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Grid.Column="2" Grid.Row="3" Content="Отчёт" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding OtchetCommand}" Margin="10,5,5,5"/>
-        <DataGrid FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Grid.Column="1" Grid.Row="0" Grid.RowSpan="5" HorizontalAlignment="Left" VerticalAlignment="Top" AutoGenerateColumns="False" ItemsSource="{Binding Ships}" SelectedItem="{Binding SelectedShip}">
+        <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Grid.Column="2" Grid.Row="1" Content="Изменить" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding ChangeCommand}" Margin="10,5,5,5"/>
+        <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Grid.Column="2" Grid.Row="2" Content="Удалить" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding RemoveCommand}" Margin="10,5,5,5"/>
+        <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Grid.Column="2" Grid.Row="3" Content="Договор" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding DogovorCommand}" Margin="10,5,5,5"/>
+        <DataGrid FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Grid.Column="1" Grid.Row="0" Grid.RowSpan="5" HorizontalAlignment="Center" VerticalAlignment="Top" AutoGenerateColumns="False" ItemsSource="{Binding Ships}" SelectedItem="{Binding SelectedShip}" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Производитель" Binding="{Binding Manufacture}"/>
@@ -38,7 +38,7 @@
                 <DataGridTextColumn Header="Расход топлива" Binding="{Binding Rashod_topl}"/>
                 <DataGridTextColumn Header="Состояние" Binding="{Binding Sostoyanie}"/>
                 <DataGridTextColumn Header="Сумма/День" Binding="{Binding Sum_day}"/>
-                <DataGridTextColumn Header="Тип" Binding="{Binding LTFK}"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding Tip_ship.Name}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Фильтр по названию" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1,2,34,2"/>

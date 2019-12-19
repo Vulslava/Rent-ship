@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="Rent ship" Height="300" Width="600" MinHeight="300" MinWidth="600" MaxHeight="10000" MaxWidth="10000">
     <Grid>
-        <Button Content="Отчёт" HorizontalAlignment="Center" Margin="395,35,19,183" VerticalAlignment="Center" Width="75"/>
         <DataGrid HorizontalAlignment="Center" Height="210" Margin="10,10,99,18" VerticalAlignment="Center" Width="380"/>
-        <Button Content="Удалить" HorizontalAlignment="Center" Margin="395,10,19,208" VerticalAlignment="Center" Width="75"/>
-        <Button Content="Добавить" HorizontalAlignment="Center" Margin="395,60,19,158" VerticalAlignment="Center" Width="75"/>
+        <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Отчёт" HorizontalAlignment="Center" VerticalAlignment="Center" Width="76" Command="{Binding OtchetCommand}" Margin="446,72,70,179"/>
+        <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Удалить" HorizontalAlignment="Center" Margin="447,49,70,202" VerticalAlignment="Center" Width="75"/>
+        <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Добавить" HorizontalAlignment="Center" Margin="446,26,70,225" VerticalAlignment="Center" Width="76"/>
     </Grid>
 </Window>

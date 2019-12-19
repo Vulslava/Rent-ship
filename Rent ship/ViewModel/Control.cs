@@ -15,16 +15,16 @@ using System.Data.SqlClient;
 
 namespace Rent_ship.ViewModel
 {
-    public class Control : INotifyPropertyChanged, IRequireViewIdentification
+    public class Control //: INotifyPropertyChanged, IRequireViewIdentification
     {
-        private string pass, login;
+        /*private string pass, login;
         public Control()
         {
             //_viewID = Guid.NewGuid();
             //logincommand = new RelayCommand(logincom, i => true);
         }
         //public RelayCommand MW { get { return logincommand; } }
-        public string FIO
+        /*public string FIO
         {
             get { return login; }
             set { login = value; NotifyPropertyChanged("FIO"); }
@@ -37,16 +37,16 @@ namespace Rent_ship.ViewModel
         private void logincom(object q)
         {
             PasswordBox passwordBox = q as PasswordBox;
-            string clearTextPassword = passwordBox.Password;
-            /*try
-            {
-                if (FIO == "1" && clearTextPassword == "1") throw new UnauthorizedAccessException();
-                NotifyPropertyChanged("AuthenticatedUser");
-                NotifyPropertyChanged("IsAuthenticated");
-                _IsAuthenticated = true;
-                Close();
-            }*/
-        }
+            string clearTextPassword = passwordBox.Password;*/
+        /*try
+        {
+            if (FIO == "1" && clearTextPassword == "1") throw new UnauthorizedAccessException();
+            NotifyPropertyChanged("AuthenticatedUser");
+            NotifyPropertyChanged("IsAuthenticated");
+            _IsAuthenticated = true;
+            Close();
+        }*/
+        /*}
 
         private bool CanLogin(object parameter)
         {
@@ -82,34 +82,36 @@ namespace Rent_ship.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-    }
-    /*Window w;
-    Rent_Model a;
-    public ObservableCollection<Sotrudnik> sotr { get; set; }
-    public Control(Window win)
-    {
-        w = win;
-        a = new Rent_Model();
-        sotr = new ObservableCollection<Sotrudnik>(a.Sotrudnik);
-    }
-    public RelayCommand MW
-    {
-        get { return new RelayCommand(obj => 
-                {
-                if ()
-                    {
-                        Sotrudnik s = new Sotrudnik();
-                        w.Hide();
-                        Sotrud = new Sotrud();
-                        Sotrud.ShowDialog();
-                        w.Close();
-                    }
-                });
-            }
-    }
-    public Sotrud Sotrud
-    {
-        get; private set;
     }*/
+        Window w;
+        Rent_Model a;
+        public ObservableCollection<Sotrudnik> sotr { get; set; }
+        public Control(Window win)
+        {
+            w = win;
+            a = new Rent_Model();
+            sotr = new ObservableCollection<Sotrudnik>(a.Sotrudnik);
+        }
+        public RelayCommand MW
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                  {
+                      {
+                          Sotrudnik s = new Sotrudnik();
+                          w.Hide();
+                          Sotrud = new Sotrud();
+                          Sotrud.ShowDialog();
+                          w.Close();
+                      }
+                  });
+            }
+        }
+        public Sotrud Sotrud
+        {
+            get; private set;
+        }
+    }
 }
 

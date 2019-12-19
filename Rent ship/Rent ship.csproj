@@ -76,6 +76,7 @@
     <Compile Include="Model\Tip_ship.cs" />
     <Compile Include="ViewModel\Bases.cs" />
     <Compile Include="ViewModel\ContAdd.cs" />
+    <Compile Include="ViewModel\ContChange.cs" />
     <Compile Include="ViewModel\ContSotr.cs" />
     <Compile Include="ViewModel\IObservable.cs" />
     <Compile Include="ViewModel\IObserver.cs" />

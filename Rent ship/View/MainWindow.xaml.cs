@@ -25,7 +25,7 @@ namespace Rent_ship
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ViewModel.Control();
+            DataContext = new ViewModel.Control(this);
         }
     }
 }

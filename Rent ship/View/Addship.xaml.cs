@@ -20,10 +20,15 @@ namespace Rent_ship
     /// </summary>
     public partial class Addship : Window
     {
-        public Addship()
+        public Addship(Rent_Model db)
         {
             InitializeComponent();
-            DataContext = new ViewModel.ContAdd(this);
+            DataContext = new ViewModel.ContAdd(this, db);
+        }
+        public Addship(Ship ship, Rent_Model db)
+        {
+            InitializeComponent();
+            DataContext = new ViewModel.ContChange(this, ship, db);
         }
     }
 }

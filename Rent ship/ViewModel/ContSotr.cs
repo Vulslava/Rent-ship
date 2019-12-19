@@ -11,7 +11,7 @@ using System.ComponentModel;
 
 namespace Rent_ship.ViewModel
 {
-    public class ContSotr : Bases, INotifyPropertyChanged
+    public class ContSotr : Bases
     {
         Window w;
         Rent_Model db;
@@ -28,8 +28,28 @@ namespace Rent_ship.ViewModel
             {
                 return new RelayCommand(obj =>
                 {
-                    a = new Addship();
+                    a = new Addship(db);
                     a.ShowDialog();
+                    Ships.Clear();
+                    foreach (Ship i in db.Ship)
+                        Ships.Add(i);
+                });
+            }
+        }
+        public RelayCommand ChangeCommand
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    if (SelectedShip != null)
+                    {
+                        a = new Addship(SelectedShip, db);
+                        a.ShowDialog();
+                        Ships.Clear();
+                        foreach(Ship i in db.Ship )
+                            Ships.Add(i);
+                    }
                 });
             }
         }
@@ -59,18 +79,23 @@ namespace Rent_ship.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
-        /*public RelayCommand RemoveCommand
-               {
-                   get
-                   {
-                       return removeship ?? (removeship = new RelayCommand(obj => 
-                       {
-                           Ship s = obj as Ship;
-                           Ship.Remove(s);
-                           Ship = Ship;
-                       }, (obj) => (changeship != null)));
-                   }
-               }*/
+        public RelayCommand RemoveCommand
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    if (SelectedShip != null)
+                    {
+                        db.Ship.Remove(selectedship);
+                        db.SaveChanges();
+                        Ships.Clear();
+                        foreach (Ship i in db.Ship)
+                            Ships.Add(i);
+                    }
+                });
+            }
+        }
         public RelayCommand DogovorCommand
         {
             get
@@ -82,26 +107,11 @@ namespace Rent_ship.ViewModel
                 });
             }
         }
-        public RelayCommand OtchetCommand
-        {
-            get
-            {
-                return new RelayCommand(obj =>
-                {
-                    o = new Otchet();
-                    o.ShowDialog();
-                });
-            }
-        }
         public Addship a
         {
             get; private set;
         }
         public Dogovor d
-        {
-            get; private set;
-        }
-        public Otchet o
         {
             get; private set;
         }
