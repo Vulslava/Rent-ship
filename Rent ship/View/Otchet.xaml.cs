@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Rent_ship.Model;
 
 namespace Rent_ship
 {
@@ -19,9 +20,10 @@ namespace Rent_ship
     /// </summary>
     public partial class Otchet : Window
     {
-        public Otchet()
+        public Otchet(Rent_Model db)
         {
             InitializeComponent();
+            DataContext = new ViewModel.ContOtchet(this, db);
         }
     }
 }

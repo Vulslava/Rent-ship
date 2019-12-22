@@ -5,23 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rent_ship"
         mc:Ignorable="d"
-        Title="Составить договор" Height="300" Width="500" MinHeight="300" MinWidth="500" MaxHeight="300" MaxWidth="500">
+        Title="Составить договор" Height="400" Width="500" MinHeight="400" MinWidth="500" MaxHeight="400" MaxWidth="500">
     <Grid>
-        <Image Source="/Resources/Ship3.jpg" Margin="-84,-96,-88,-127" Opacity="0.6"/>
-        <DatePicker FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Margin="10,99,282,96" VerticalAlignment="Center" Width="120"/>
-        <DatePicker FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Margin="135,99,157,96" VerticalAlignment="Center" Width="120"/>
-        <DatePicker FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Margin="260,99,32,96" VerticalAlignment="Center" Width="120"/>
-        <TextBox FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Height="22" Margin="10,160,282,37" TextWrapping="Wrap" Text="{Binding Summa, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="120"/>
-        <ComboBox FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Margin="10,41,282,156" VerticalAlignment="Center" Width="120" ItemsSource="{Binding L}" SelectedItem="{Binding SelectedShip}" DisplayMemberPath="Name"/>
-        <ComboBox FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Margin="135,41,157,156" VerticalAlignment="Center" Width="120" ItemsSource="{Binding S}" SelectedItem="{Binding SelectedSotrudnik}" DisplayMemberPath="Name"/>
-        <ComboBox FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Margin="260,41,32,156" VerticalAlignment="Center" Width="120" ItemsSource="{Binding C}" SelectedItem="{Binding SelectedClient}" DisplayMemberPath="Name"/>
-        <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Создать" HorizontalAlignment="Center" Margin="10,187,327,12" VerticalAlignment="Center" Width="75"/>
-        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Лодка" HorizontalAlignment="Center" Margin="10,10,358,183" VerticalAlignment="Center" RenderTransformOrigin="0.289,0.115"/>
-        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Сотрудник" HorizontalAlignment="Center" Margin="135,10,208,183" VerticalAlignment="Center" RenderTransformOrigin="0.493,0.538"/>
-        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Клиент" HorizontalAlignment="Center" Margin="261,10,103,183" VerticalAlignment="Center"/>
-        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Дата оформления" HorizontalAlignment="Center" Margin="10,68,293,125" VerticalAlignment="Center"/>
-        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Дата сдачи" HorizontalAlignment="Center" Margin="135,68,206,125" VerticalAlignment="Center"/>
-        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Дата окончания аренды" HorizontalAlignment="Center" Margin="260,68,9,125" VerticalAlignment="Center"/>
-        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Сумма" HorizontalAlignment="Center" Margin="10,128,356,65" VerticalAlignment="Center" RenderTransformOrigin="-1.652,0.231"/>
+        <Image Source="/Resources/Ship3.jpg" Margin="-81,-104,-91,-119" Opacity="0.6"/>
+        <DatePicker FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Margin="10,101,310,210" VerticalAlignment="Center" Width="120" SelectedDate="{Binding Date_of}"/>
+        <DatePicker FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Margin="304,101,16,210" VerticalAlignment="Center" Width="120" SelectedDate="{Binding Date_sd}"/>
+        <DatePicker FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Margin="157,101,163,210" VerticalAlignment="Center" Width="120"  SelectedDate="{Binding Date_ok}"/>
+        <TextBox Name="tb" FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Height="22" Margin="10,160,310,151" TextWrapping="Wrap" Text="{Binding Sum, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="120" IsReadOnly="False"/>
+        <ComboBox FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Margin="304,41,16,269" VerticalAlignment="Center" Width="120" ItemsSource="{Binding client}" SelectedItem="{Binding SelectedClient}" DisplayMemberPath="FIO" Height="22"/>
+        <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Создать/Изменить" HorizontalAlignment="Center" Margin="10,219,310,92" VerticalAlignment="Center" Width="120" Command="{Binding AddDogovor}" Height="20"/>
+        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Лодка" HorizontalAlignment="Center" Margin="36,28,392,309" VerticalAlignment="Center" RenderTransformOrigin="0.289,0.115" Height="32" Width="64"/>
+        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Сотрудник" HorizontalAlignment="Center" Margin="183,28,222,309" VerticalAlignment="Center" RenderTransformOrigin="0.493,0.538" Height="32" Width="87"/>
+        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Клиент" HorizontalAlignment="Center" Margin="330,28,95,309" VerticalAlignment="Center" Height="32" Width="67"/>
+        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Дата оформления" HorizontalAlignment="Center" Margin="36,86,336,256" VerticalAlignment="Center" Height="27" Width="120"/>
+        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Дата сдачи" HorizontalAlignment="Center" Margin="330,86,76,256" VerticalAlignment="Center" Height="27" Width="86"/>
+        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Дата окончания аренды" HorizontalAlignment="Center" Margin="183,86,162,256" VerticalAlignment="Center" Height="27" Width="147"/>
+        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Сумма" HorizontalAlignment="Center" Margin="36,147,392,190" VerticalAlignment="Center" RenderTransformOrigin="-1.652,0.231" Height="32" Width="64"/>
+        <TextBox FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Height="22" Margin="10,41,310,269" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" IsReadOnly="True"  Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Height="22" Margin="157,41,163,269" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" IsReadOnly="True" Text="{Binding FIOS, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>

@@ -1,0 +1,19 @@
+﻿<Window x:Class="Rent_ship.Addsotr"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Rent_ship"
+        mc:Ignorable="d"
+        Title="Добавление/Изменить сотрудника" Height="310" Width="290" MinHeight="310" MinWidth="290" MaxHeight="310" MaxWidth="290">
+    <Grid>
+        <Image Source="/Resources/Ship2.jpg" Margin="-15,-21,-19,-16" Opacity="0.6"/>
+        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="ФИО" HorizontalAlignment="Center" Margin="54,11,165,238" VerticalAlignment="Center" Height="30" Width="63"/>
+        <TextBox FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Height="23" Margin="54,41,68,215" TextWrapping="Wrap" Text="{Binding FIO, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="160"/>
+        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Пароль" HorizontalAlignment="Center" Margin="55,68,165,181" VerticalAlignment="Center" Height="30" Width="62"/>
+        <TextBox FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Height="25" Margin="54,98,68,156" TextWrapping="Wrap" Text="{Binding Pass, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="160"/>
+        <ComboBox FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" HorizontalAlignment="Center" Margin="54,159,68,96" VerticalAlignment="Center" Width="160" ItemsSource="{Binding TS}" SelectedItem="{Binding SelectedTip_sotrudnika}" DisplayMemberPath="Name" Height="24"/>
+        <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Тип" HorizontalAlignment="Center" Margin="54,128,165,120" VerticalAlignment="Center" Height="31" Width="63"/>
+        <Button FontFamily="Times New Roman" FontWeight="UltraBold" Command="{Binding AddSotrudnika}" FontStyle="Italic" Content="Добавить/Изменить" HorizontalAlignment="Center" Margin="44,226,98,29" VerticalAlignment="Center" Width="120" Height="24"/>
+    </Grid>
+</Window>

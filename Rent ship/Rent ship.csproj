@@ -74,36 +74,39 @@
     <Compile Include="Model\Ship.cs" />
     <Compile Include="Model\Sotrudnik.cs" />
     <Compile Include="Model\Tip_ship.cs" />
+    <Compile Include="Model\Tip_sotrudnika.cs" />
+    <Compile Include="ViewModel\AddClient.cs" />
+    <Compile Include="ViewModel\Addsotrud.cs" />
     <Compile Include="ViewModel\Bases.cs" />
+    <Compile Include="ViewModel\ChangeClient.cs" />
+    <Compile Include="ViewModel\Changesotrud.cs" />
     <Compile Include="ViewModel\ContAdd.cs" />
+    <Compile Include="ViewModel\ContAdm.cs" />
     <Compile Include="ViewModel\ContChange.cs" />
+    <Compile Include="ViewModel\ContClient.cs" />
+    <Compile Include="ViewModel\ContDogovor.cs" />
+    <Compile Include="ViewModel\ContDogovor1.cs" />
+    <Compile Include="ViewModel\ContOtchet.cs" />
     <Compile Include="ViewModel\ContSotr.cs" />
-    <Compile Include="ViewModel\IObservable.cs" />
-    <Compile Include="ViewModel\IObserver.cs" />
-    <Compile Include="ViewModel\IRequireViewIdentification.cs" />
-    <Compile Include="ViewModel\ShipVM.cs" />
+    <Compile Include="View\AddClient.xaml.cs">
+      <DependentUpon>AddClient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Addship.xaml.cs">
       <DependentUpon>Addship.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Addsotr.xaml.cs">
+    <Compile Include="View\Addsotr.xaml.cs">
       <DependentUpon>Addsotr.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin.xaml.cs">
+    <Compile Include="View\Admin.xaml.cs">
       <DependentUpon>Admin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Changeship.xaml.cs">
-      <DependentUpon>Changeship.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\Control.cs" />
+    <Compile Include="View\Clients.xaml.cs">
+      <DependentUpon>Clients.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Dogovor.xaml.cs">
       <DependentUpon>Dogovor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewFolder1\ClientModel.cs" />
-    <Compile Include="NewFolder1\DogovorModel.cs" />
-    <Compile Include="NewFolder1\ShipModel.cs" />
-    <Compile Include="NewFolder1\SotrudnikModel.cs" />
-    <Compile Include="NewFolder1\Tip_shipModel.cs" />
-    <Compile Include="NewFolder1\Tip_sotrudnikaModel.cs" />
     <Compile Include="View\Otchet.xaml.cs">
       <DependentUpon>Otchet.xaml</DependentUpon>
     </Compile>
@@ -111,19 +114,23 @@
     <Compile Include="View\Sotrud.xaml.cs">
       <DependentUpon>Sotrud.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AddClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Addship.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Addsotr.xaml">
+    <Page Include="View\Addsotr.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin.xaml">
+    <Page Include="View\Admin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Changeship.xaml">
+    <Page Include="View\Clients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,7 +177,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -6,31 +6,22 @@ namespace Rent_ship.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Sotrudnik")]
-    public partial class Sotrudnik
+    public partial class Tip_sotrudnika
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sotrudnik()
+        public Tip_sotrudnika()
         {
-            Dogovor = new HashSet<Dogovor>();
+            Sotrudnik = new HashSet<Sotrudnik>();
         }
 
         [Key]
-        public int SID { get; set; }
+        public int TID { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string FIO { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Pass { get; set; }
-
-        public int TFK { get; set; }
+        public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Dogovor> Dogovor { get; set; }
-
-        public virtual Tip_sotrudnika Tip_sotrudnika { get; set; }
+        public virtual ICollection<Sotrudnik> Sotrudnik { get; set; }
     }
 }

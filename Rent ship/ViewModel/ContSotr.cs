@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using Rent_ship.Model;
 using System.ComponentModel;
+using Rent_ship.View;
 
 namespace Rent_ship.ViewModel
 {
@@ -15,11 +16,13 @@ namespace Rent_ship.ViewModel
     {
         Window w;
         Rent_Model db;
+        Sotrudnik s;
         public ObservableCollection<Ship> Ships { get; set; }
-        public ContSotr(Window win)
+        public ContSotr(Window win, Sotrudnik sotr)
         {
             db = new Rent_Model();
             w = win;
+            s = sotr;
             Ships = new ObservableCollection<Ship>(db.Ship);
         }
         public RelayCommand AddCommand
@@ -53,15 +56,6 @@ namespace Rent_ship.ViewModel
                 });
             }
         }
-        private List<IObserver> obs;
-        private int ID;
-        public void NotifyObservers()
-        {
-            foreach (IObserver o in obs)
-            {
-                o.Update(ID);
-            }
-        }
         Ship selectedship;
         public Ship SelectedShip
         {
@@ -78,7 +72,7 @@ namespace Rent_ship.ViewModel
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
-
+        public string sostoyanie = "Списан";
         public RelayCommand RemoveCommand
         {
             get
@@ -87,7 +81,8 @@ namespace Rent_ship.ViewModel
                 {
                     if (SelectedShip != null)
                     {
-                        db.Ship.Remove(selectedship);
+                        selectedship.Sostoyanie = sostoyanie;
+                        //db.Ship.Remove(selectedship);
                         db.SaveChanges();
                         Ships.Clear();
                         foreach (Ship i in db.Ship)
@@ -96,14 +91,48 @@ namespace Rent_ship.ViewModel
                 });
             }
         }
+        public RelayCommand ClientCommand
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    c = new Clients(db);
+                    c.ShowDialog();
+                });
+            }
+        }
+        public string Sostoyanie
+        {
+            get { return sostoyanie; }
+            set { sostoyanie = value; OnPropertyChanged("Sostoyanie"); }
+        }
         public RelayCommand DogovorCommand
         {
             get
             {
                 return new RelayCommand(obj =>
                 {
-                    d = new Dogovor();
-                    d.ShowDialog();
+                    if (SelectedShip != null && selectedship.Sostoyanie != "Списан" && selectedship.Sostoyanie != "Арендован")
+                    {
+                        d = new Dogovor(selectedship, s, db);
+                        d.ShowDialog();
+                        selectedship.Sostoyanie = "Арендован";
+                        Ships.Clear();
+                        foreach (Ship i in db.Ship)
+                            Ships.Add(i);
+                    }
+                    if (SelectedShip != null && selectedship.Sostoyanie == "Арендован")
+                    {
+                        foreach (Model.Dogovor i in db.Dogovor)
+                            if (i.LFK == selectedship.LID)
+                                d = new Dogovor(selectedship, s, db, i);
+                        d.ShowDialog();
+                        selectedship.Sostoyanie = "Свободно";
+                        Ships.Clear();
+                        foreach (Ship i in db.Ship)
+                            Ships.Add(i);
+                    }
                 });
             }
         }
@@ -112,6 +141,10 @@ namespace Rent_ship.ViewModel
             get; private set;
         }
         public Dogovor d
+        {
+            get; private set;
+        }
+        public Clients c
         {
             get; private set;
         }

@@ -1,0 +1,34 @@
+﻿<Window x:Class="Rent_ship.Admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Rent_ship"
+        mc:Ignorable="d"
+        Title="Администратор" Height="300" Width="600" MinHeight="300" MinWidth="600" MaxHeight="10000" MaxWidth="10000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30px"></RowDefinition>
+            <RowDefinition Height="30px"></RowDefinition>
+            <RowDefinition Height="30px"></RowDefinition>
+            <RowDefinition Height="30px"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="90px"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Source="/Resources/Ship5.jpg" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Grid.ColumnSpan="3" Margin="-30,-24,-23,-47" Opacity="0.6"/>
+        <DataGrid FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" AutoGenerateColumns="False" ItemsSource="{Binding Sotrudniks}" SelectedItem="{Binding SelectedSotrudnik}" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding FIO}"/>
+                <DataGridTextColumn Header="Пароль" Binding="{Binding Pass}"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding Tip_sotrudnika.Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Grid.Column="1" Grid.Row="3" Content="Отчёт" HorizontalAlignment="Center" VerticalAlignment="Center" Width="76" Command="{Binding OtchetCommand}" Margin="10,5,5,5"/>
+        <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Grid.Column="1" Grid.Row="2" Content="Удалить" HorizontalAlignment="Center" Margin="10,5,5,5" VerticalAlignment="Center" Width="76" Command="{Binding RemoveCommand}"/>
+        <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Grid.Column="1" Grid.Row="1" Content="Изменить" HorizontalAlignment="Center" Margin="10,5,5,5" VerticalAlignment="Center" Width="76" Command="{Binding ChangeCommand}"/>
+        <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Grid.Column="1" Grid.Row="0" Content="Добавить" HorizontalAlignment="Center" Margin="10,5,5,5" VerticalAlignment="Center" Width="76" Command="{Binding AddCommand}"/>
+    </Grid>
+</Window>

@@ -10,25 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Rent_ship.Model;
+using System.Windows.Shapes;
 
-namespace Rent_ship
+namespace Rent_ship.View
 {
     /// <summary>
-    /// Логика взаимодействия для Dogovor.xaml
+    /// Логика взаимодействия для AddClient.xaml
     /// </summary>
-    public partial class Dogovor : Window
+    public partial class AddClient : Window
     {
-        public Dogovor(Ship shi, Sotrudnik sot, Rent_Model db)
+        public AddClient(Rent_Model db)
         {
             InitializeComponent();
-            DataContext = new ViewModel.ContDogovor(this, db, shi, sot);
+            DataContext = new ViewModel.AddClient(this, db);
         }
-        public Dogovor(Ship shi, Sotrudnik sot, Rent_Model db, Model.Dogovor d)
+        public AddClient(Client client, Rent_Model db)
         {
             InitializeComponent();
-            DataContext = new ViewModel.ContDogovor1(this, db, shi, sot, d);
+            DataContext = new ViewModel.ChangeClient(this, client, db);
         }
     }
 }

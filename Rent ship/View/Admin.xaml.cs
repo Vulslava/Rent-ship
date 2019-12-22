@@ -10,18 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Rent_ship.Model;
 using System.Windows.Shapes;
 
 namespace Rent_ship
 {
     /// <summary>
-    /// Логика взаимодействия для Addsotr.xaml
+    /// Логика взаимодействия для Admin.xaml
     /// </summary>
-    public partial class Addsotr : Window
+    public partial class Admin : Window
     {
-        public Addsotr()
+        public Admin()
         {
             InitializeComponent();
+            DataContext = new ViewModel.ContAdm(this);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Rent_ship.Model;
 using System.Windows.Controls;
 using System.Data;
 using System.Data.SqlClient;
@@ -21,10 +22,10 @@ namespace Rent_ship
     /// </summary>
     public partial class Sotrud : Window
     {
-        public Sotrud()
+        public Sotrud(Sotrudnik s)
         {
             InitializeComponent();
-            DataContext = new ViewModel.ContSotr(this);
+            DataContext = new ViewModel.ContSotr(this, s);
         }
     }
 }

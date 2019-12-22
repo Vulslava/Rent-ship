@@ -9,8 +9,8 @@
     <Grid Margin="10,10,13,0">
         <Image Source="/Resources/Ship2.jpg" Margin="-15,-21,-19,-16" Opacity="0.6"/>
         <Button FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Войти" HorizontalAlignment="Center" Height="21" Margin="84,159,75,79" VerticalAlignment="Center" Width="80" Command="{Binding MW}"/>
-        <TextBox FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" x:Name="login" HorizontalAlignment="Center" Height="21" Margin="50,41,39,125" TextWrapping="Wrap" Text="{Binding FIO, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="104"/>
-        <PasswordBox x:Name="password" HorizontalAlignment="Center" Height="20" Margin="50,98,39,69" VerticalAlignment="Center" Width="104"/>
+        <TextBox FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" x:Name="login" HorizontalAlignment="Center" Height="21" Margin="50,41,39,125" TextWrapping="Wrap" Text="{Binding SID, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="104"/>
+        <TextBox FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" x:Name="password" HorizontalAlignment="Center" Height="21" Margin="50,98,39,69" VerticalAlignment="Center" Text="{Binding Pass, UpdateSourceTrigger=PropertyChanged}" Width="104"/>
         <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Логин" HorizontalAlignment="Center" Margin="50,10,99,151" VerticalAlignment="Center" RenderTransformOrigin="-0.132,-0.731"/>
         <Label FontFamily="Times New Roman" FontWeight="UltraBold" FontStyle="Italic" Content="Пароль" HorizontalAlignment="Center" Margin="50,67,92,94" VerticalAlignment="Center" RenderTransformOrigin="2.684,1.346"/>
     </Grid>

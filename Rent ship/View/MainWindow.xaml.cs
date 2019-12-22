@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Rent_ship.Model;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;

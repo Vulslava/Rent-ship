@@ -17,6 +17,7 @@ namespace Rent_ship.Model
         public virtual DbSet<Ship> Ship { get; set; }
         public virtual DbSet<Sotrudnik> Sotrudnik { get; set; }
         public virtual DbSet<Tip_ship> Tip_ship { get; set; }
+        public virtual DbSet<Tip_sotrudnika> Tip_sotrudnika { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -79,6 +80,16 @@ namespace Rent_ship.Model
                 .HasMany(e => e.Ship)
                 .WithRequired(e => e.Tip_ship)
                 .HasForeignKey(e => e.LTFK)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Tip_sotrudnika>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Tip_sotrudnika>()
+                .HasMany(e => e.Sotrudnik)
+                .WithRequired(e => e.Tip_sotrudnika)
+                .HasForeignKey(e => e.TFK)
                 .WillCascadeOnDelete(false);
         }
     }

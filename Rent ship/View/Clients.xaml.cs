@@ -11,18 +11,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Rent_ship.Model;
 
-namespace Rent_ship
+namespace Rent_ship.View
 {
     /// <summary>
-    /// Логика взаимодействия для Changeship.xaml
+    /// Логика взаимодействия для Clients.xaml
     /// </summary>
-    public partial class Changeship : Window
+    public partial class Clients : Window
     {
-        public Changeship()
+        public Clients(Rent_Model db)
         {
             InitializeComponent();
-            DataContext = new Control();
+            DataContext = new ViewModel.ContClient(this, db);
         }
     }
 }

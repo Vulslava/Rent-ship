@@ -84,13 +84,31 @@ namespace Rent_ship.ViewModel
         #endregion
     }*/
         Window w;
-        Rent_Model a;
-        public ObservableCollection<Sotrudnik> sotr { get; set; }
+        Rent_Model db;
+        public ObservableCollection<Sotrudnik> sotrudnik { get; set; }
         public Control(Window win)
         {
+            db = new Rent_Model();
             w = win;
-            a = new Rent_Model();
-            sotr = new ObservableCollection<Sotrudnik>(a.Sotrudnik);
+            sotrudnik = new ObservableCollection<Sotrudnik>(db.Sotrudnik);
+        }
+        private int sid = 0;
+        private string pass = null;
+        public int SID
+        {
+            get { return sid; }
+            set { sid = value; OnPropertyChanged("SID"); }
+        }
+        public string Pass
+        {
+            get { return pass; }
+            set { pass = value; OnPropertyChanged("Pass"); }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
         public RelayCommand MW
         {
@@ -99,16 +117,34 @@ namespace Rent_ship.ViewModel
                 return new RelayCommand(obj =>
                   {
                       {
-                          Sotrudnik s = new Sotrudnik();
-                          w.Hide();
-                          Sotrud = new Sotrud();
-                          Sotrud.ShowDialog();
-                          w.Close();
+                          if (sid != 0 && pass != null)
+                          {
+                              Sotrudnik sot = db.Sotrudnik.Find(sid);
+                              if (sot.SID == sid && sot.Pass == pass)
+                              {
+                                  w.Hide();
+                                  if (sot.TFK == 1)
+                                  {
+                                      Sotrud = new Sotrud(sot);
+                                      Sotrud.ShowDialog();
+                                  }
+                                  else
+                                  {
+                                      Admin = new Admin();
+                                      Admin.ShowDialog();
+                                  }
+                                  w.Close();
+                              }
+                          }
                       }
                   });
             }
         }
         public Sotrud Sotrud
+        {
+            get; private set;
+        }
+        public Admin Admin
         {
             get; private set;
         }
