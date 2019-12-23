@@ -66,13 +66,6 @@ namespace Rent_ship.ViewModel
                 OnPropertyChanged("SelectedShip");
             }
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
-        public string sostoyanie = "Списан";
         public RelayCommand RemoveCommand
         {
             get
@@ -81,7 +74,7 @@ namespace Rent_ship.ViewModel
                 {
                     if (SelectedShip != null)
                     {
-                        selectedship.Sostoyanie = sostoyanie;
+                        selectedship.Sostoyanie = "Списан";
                         //db.Ship.Remove(selectedship);
                         db.SaveChanges();
                         Ships.Clear();
@@ -101,11 +94,6 @@ namespace Rent_ship.ViewModel
                     c.ShowDialog();
                 });
             }
-        }
-        public string Sostoyanie
-        {
-            get { return sostoyanie; }
-            set { sostoyanie = value; OnPropertyChanged("Sostoyanie"); }
         }
         public RelayCommand DogovorCommand
         {

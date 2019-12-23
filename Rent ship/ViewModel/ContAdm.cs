@@ -64,12 +64,6 @@ namespace Rent_ship.ViewModel
                 OnPropertyChanged("SelectedSotrudnik");
             }
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
         public RelayCommand RemoveCommand
         {
             get

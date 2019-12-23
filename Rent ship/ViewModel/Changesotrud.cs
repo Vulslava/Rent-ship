@@ -28,8 +28,8 @@ namespace Rent_ship.ViewModel
             pass = s.Pass;
             SelectedTip_sotrudnika = TS.Where(i => i.TID == sotr.TFK).FirstOrDefault();
         }
-        private string fio = null;
-        private string pass = null;
+        private string fio;
+        private string pass;
         public string FIO
         {
             get { return fio; }
@@ -45,12 +45,6 @@ namespace Rent_ship.ViewModel
         {
             get { return selectedtip_sotrudnika; }
             set { selectedtip_sotrudnika = value; OnPropertyChanged("SelectedTip_sotrudnika"); }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
         public RelayCommand AddSotrudnika
         {

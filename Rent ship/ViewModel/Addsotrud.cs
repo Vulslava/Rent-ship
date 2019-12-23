@@ -41,12 +41,6 @@ namespace Rent_ship.ViewModel
             get { return selectedtip_sotrudnika; }
             set { selectedtip_sotrudnika = value; OnPropertyChanged("SelectedTip_sotrudnika"); }
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
         public RelayCommand AddSotrudnika
         {
             get

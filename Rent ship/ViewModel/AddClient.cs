@@ -51,12 +51,6 @@ namespace Rent_ship.ViewModel
             get { return nump; }
             set { nump = value; OnPropertyChanged("Nump"); }
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
         public RelayCommand AddShip
         {
             get

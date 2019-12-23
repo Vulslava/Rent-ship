@@ -15,7 +15,7 @@ using System.Data.SqlClient;
 
 namespace Rent_ship.ViewModel
 {
-    public class Control //: INotifyPropertyChanged, IRequireViewIdentification
+    public class Control : Bases//: INotifyPropertyChanged, IRequireViewIdentification
     {
         /*private string pass, login;
         public Control()
@@ -103,12 +103,6 @@ namespace Rent_ship.ViewModel
         {
             get { return pass; }
             set { pass = value; OnPropertyChanged("Pass"); }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
         public RelayCommand MW
         {

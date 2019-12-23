@@ -63,12 +63,6 @@ namespace Rent_ship.ViewModel
                 OnPropertyChanged("SelectedClient");
             }
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
         public View.AddClient a
         {
             get; private set;

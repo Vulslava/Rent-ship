@@ -95,12 +95,6 @@ namespace Rent_ship.ViewModel
             get { return sum_day; }
             set { sum_day = value; OnPropertyChanged("Sum_day"); }
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
         Tip_ship selectedtip_ship;
         public Tip_ship SelectedTip_ship
         {

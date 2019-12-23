@@ -30,12 +30,6 @@ namespace Rent_ship.ViewModel
             get { return selectedship; }
             set { selectedship = value; OnPropertyChanged("SelectedShip"); }
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
         public RelayCommand Search
         {
             get
